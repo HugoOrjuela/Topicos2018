@@ -31,8 +31,8 @@ public class Calculadora1Test {
     @Parameterized.Parameters
     public static Iterable<Object[]> getData() {
         List<Object[]> Datos = new ArrayList<>();
-        Datos.add(new Object[]{10, 2, 12});
-        Datos.add(new Object[]{2, 2, 4});
+        Datos.add(new Object[]{10, 2, 12}); //parametros dados a la suma
+        Datos.add(new Object[]{2, 2, 4});   //parametros dados a la suma
         return Datos;
     }
 
@@ -61,7 +61,7 @@ public class Calculadora1Test {
         System.out.println("\n");
         cal.clear();
     }
-    // Solo se le esta aplicando el parametrizado a ala suma 
+    // Solo se le esta aplicando el parametrizado a la suma 
     @Test
     public void testSuma() {
         System.out.println("suma");
@@ -69,7 +69,7 @@ public class Calculadora1Test {
         int result = cal.suma(a, b);
         System.out.println("El Resultado Esperado Es:"+Resultado+"\nEl Obtenido Es: "+result);
         System.out.println("\n");
-        assertThat(Resultado,is(result));  //Uso Del AsserThat
+        assertThat(Resultado,is(result));  //Uso Del AsserThat Sirve para comparar un tipo de dato u objeto.
         
     }
 
@@ -82,6 +82,7 @@ public class Calculadora1Test {
         System.out.println("El Resultado Esperado Es:"+Esperado+"\nEl Obtenido Es: "+result);
         System.out.println("\n");
         assertEquals(Esperado,result);
+        assertSame(Esperado, result); //assertSame Sirve para comparar dos tipos de datos y afirmar que iguales.
         
     }
 
@@ -94,13 +95,14 @@ public class Calculadora1Test {
         System.out.println("El Resultado Esperado Es:"+Esperado+"\nEl Obtenido Es: "+result);
         System.out.println("\n");
         assertEquals(Esperado, result);
+        assertNotNull(result); // uso del Sirve para afirmar que un tipo de dato u objeto no es nulo.
     }
 
     @Test
     public void testDivi() {
         System.out.println("Div");
         Calculadora1 instance = new Calculadora1();
-        int result = cal.divi(5, 5);
+        int result = cal.divi(5, 0); //Se genera el ArithmeticException debido a que se esta dividiendo en 0 por lo tanto genera Error en junit
         int Esperado=1;
         System.out.println("El Resultado Esperado Es:"+Esperado+"\nEl Obtenido Es: "+result);
         System.out.println("\n");
